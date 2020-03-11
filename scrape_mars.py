@@ -3,20 +3,24 @@ from splinter import Browser
 from bs4 import BeautifulSoup
 import time
 
-executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-browser = Browser('chrome', **executable_path, headless=False)
+
+def init_browser():
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    browser = Browser('chrome', **executable_path, headless=False)
+    return browser
 
 
 def scrape():
-    scraped_data = {}
+
+    mars_dict = {}
     news_output = mars_news()
-    scraped_data['mars_news'] = news_output[0]
-    scraped_data['mars_paragraph'] = news_output[1]
-    scraped_data['mars_image'] = mars_image()
-    scraped_data['mars_weather'] = mars_weather()
-    scraped_data['mars_facts'] = mars_facts()
-    scraped_data['mars_hemisphere'] = mars_hemisphere()
-    return scraped_data
+    mars_dict['mars_news'] = news_output[0]
+    mars_dict['mars_paragraph'] = news_output[1]
+    mars_dict['mars_image'] = mars_image()
+    mars_dict['mars_weather'] = mars_weather()
+    mars_dict['mars_facts'] = mars_facts()
+    mars_dict['mars_hemisphere'] = mars_hemisphere()
+    return mars_dict
 
 
 def mars_news():
